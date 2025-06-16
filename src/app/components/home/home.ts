@@ -1,17 +1,22 @@
 import { Component, inject } from '@angular/core';
-import { EnviaFormulario } from '../../services/envia-formulario';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [ ReactiveFormsModule ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home {
-  private EnviaFormulario = inject(EnviaFormulario)
-  listItens = ['Lucas', 'Rafael', 'De', 'Souza']
-  submit() {
-    this.EnviaFormulario.EnviaInformacaoParaBackend("enviando do home")
-  }
 
+    loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required),
+    });
+    login() {
+      // CALL API with username and password
+      console.log(this.loginForm.value);
+      if (this.loginForm.invalid) return;
+      const formValues = this.loginForm.value;
+    }
 }
