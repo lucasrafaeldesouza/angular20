@@ -11,7 +11,4 @@ export class MusicService {
 
   constructor(private httpClient: HttpClient) {    
   }
-
-  obterMusicas() {
-  }
 }
