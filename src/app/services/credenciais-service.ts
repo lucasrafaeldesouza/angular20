@@ -7,12 +7,4 @@ import { Credencial } from '../models/credenciais.models';
   providedIn: 'root'
 })
 export class CredenciaisService {
-
-  private url = environment.api
-
-  constructor(private httpClient: HttpClient) {
-  }
-  obterCredenciais() {
-    return this.httpClient.get<Credencial[]>(this.url + '/credenciais')
-  }
 }
