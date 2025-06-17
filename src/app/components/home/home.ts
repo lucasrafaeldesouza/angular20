@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Credencial } from '../../models/credenciais.models';
 import { CredenciaisService } from '../../services/credenciais-service';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-home',
   imports: [ ReactiveFormsModule, CommonModule ],
@@ -12,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class Home {
 
-    credenciais: Credencial[] = []
+    credenciais = new Observable<Credencial[]>()
     
     constructor (private credenciaisService: CredenciaisService) {
       console.log('home.ts')
@@ -21,8 +22,7 @@ export class Home {
     }
 
     obterCredenciaisCadastradas() {
-      this.credenciaisService.obterCredenciais()
-      .subscribe(credenciais => this.credenciais = credenciais)
+      this.credenciais = this.credenciaisService.obterCredenciais()
     }
 
     loginForm = new FormGroup({

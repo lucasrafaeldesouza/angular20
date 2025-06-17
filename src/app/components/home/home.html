@@ -33,7 +33,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let credencial of credenciais">
+                <tr *ngFor="let credencial of credenciais | async">
                   <td>{{ credencial.id }}</td>
                   <td>{{ credencial.username }}</td>
                   <td>{{ credencial.password }}</td>
