@@ -28,13 +28,13 @@ export class Home {
             this._snackBar.open('Seja Bem-Vindo Ao PRIMe!', 'Fechar', {
             horizontalPosition: 'right',
             verticalPosition: 'bottom',
-            duration: 2000
+            duration: 3500
           }); 
         } else {
           this._snackBar.open('Usuario ou Senha Incorreto', 'Fechar', {
             horizontalPosition: 'right',
             verticalPosition: 'bottom',
-            duration: 2000,
+            duration: 3500,
           });
         }
       });
