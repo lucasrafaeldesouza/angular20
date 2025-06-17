@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Home } from './components/home/home';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment'
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,4 @@ import { environment } from '../environments/environment';
 })
 export class App {
   protected title = 'prime';
-
-  constructor () {
-    console.log('TO AQUI', environment.api)
-  }
 }

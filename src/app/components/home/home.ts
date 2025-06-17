@@ -1,13 +1,29 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
+import { environment } from '../../../environments/environment';
+import { Credencial } from '../../models/credenciais.models';
+import { CredenciaisService } from '../../services/credenciais-service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-home',
-  imports: [ ReactiveFormsModule ],
+  imports: [ ReactiveFormsModule, CommonModule ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home {
+
+    credenciais: Credencial[] = []
+    
+    constructor (private credenciaisService: CredenciaisService) {
+      console.log('home.ts')
+      console.log(environment.api)
+      this.obterCredenciaisCadastradas()
+    }
+
+    obterCredenciaisCadastradas() {
+      this.credenciaisService.obterCredenciais()
+      .subscribe(credenciais => this.credenciais = credenciais)
+    }
 
     loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
