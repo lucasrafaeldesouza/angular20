@@ -4,26 +4,26 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-home',
   imports: [ ReactiveFormsModule, CommonModule ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
+
 export class Home {
 
     private _snackBar = inject(MatSnackBar);
-    
-    constructor(private httpClient: HttpClient) { }
+    private http = inject(HttpClient);
 
     loginForm = new FormGroup({
       EmailId: new FormControl('', Validators.required),
       Password: new FormControl('', Validators.required),
     });
 
-    
     login() {
-      this.httpClient.post('/api/User/Login', this.loginForm.value).subscribe((res: any) => {
+      this.http.post('/api/User/Login', this.loginForm.value).subscribe((res: any) => {
         if(res.result) {
             this._snackBar.open('Seja Bem-Vindo Ao PRIMe!', 'Fechar', {
             horizontalPosition: 'right',
@@ -38,7 +38,7 @@ export class Home {
           });
         }
       });
-      // this.httpClient.post("https://freeapi.miniprojectideas.com/api/User/Login", this.loginForm.value).subscribe((res:any) =>{
+      // this.http.post("https://freeapi.miniprojectideas.com/api/User/Login", this.loginForm.value).subscribe((res:any) =>{
       //   if(res.result) {
       //     alert('Login Success')
       //   } else {
