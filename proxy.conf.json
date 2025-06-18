@@ -1,10 +1,8 @@
 {
-  "/api": {
-    "target": "https://freeapi.miniprojectideas.com",
-    "secure": true,
+  "/rede": {
+    "target": "http://localhost:8080",
+    "secure": false,
     "changeOrigin": true,
-    "pathRewrite": {
-      "^/api": "/api"
-    }
+    "logLevel": "debug"
   }
 }
