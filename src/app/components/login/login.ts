@@ -8,13 +8,13 @@ import * as CryptoJS from 'crypto-js';
 import { Constant } from '../../conststnt';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-login',
   imports: [ ReactiveFormsModule, CommonModule ],
-  templateUrl: './home.html',
-  styleUrl: './home.css'
+  templateUrl: './login.html',
+  styleUrl: './login.css'
 })
 
-export class Home {
+export class Login {
 
     private _snackBar = inject(MatSnackBar);
     private http = inject(HttpClient);
@@ -24,7 +24,7 @@ export class Home {
     // }
     loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
-      password: new FormControl('SbDgIj+ezs98k3U5NwHEryHmpCzEIqZuSmmGiLRN7SjrAYPyj0OLV5kTn2pXHgprGWcEpDhRdwprQdS0PEgUpiW42kF+Q+AOGNwGLXUlJ6EEWlm3HYHOoUqhA7LG+uEQsU9lcYx/gJ5mBFKufvV4pTDcRD9+97jErXfUu236D52RpH37k6YejZSopWEhsc23yjca3tSVkuZDuQjfRbYSDAoQn65+6+nFPiLL3PYVPafdaZxfm1THecQuL+uuGO5ucJ11DpdKNxaXMLRntSaOtsehVKsWcD6QqOGjCnjKfV8i5+eTCdFPds6iDw7BPxbOlcpAoOuhNUmJnw0RKC+0fg==', Validators.required),
+      password: new FormControl('fYiIFGZxR5uf2/78HE3ON48bs3D45L3Y7ae1LDPLuURYv6uYglBpfeVE5W5KzuElTYLFoYMh1ClZrg6o+JR/HqkHDk5MhX1in3CWFUeXtfHgcXlEGlRdJ6AEfgjmPNZfCEwP3ic/YYmreyOBQ6BhDhISgLAgzr8PBWMoHL2AKBWwhBLfJkzrk/zF3k8C6EJC8Bcf3QaYzJiZmczwGS4A00E9mv1h+oxD30mtbrDvTfljhRBf1+cLFUjv91QNABkhdjloDHB+oS6RVjNaBRLeIvXV5raGrydW4A5CE+senIYOGaRiNRGdMO+Wf8n9pp/qQe9lMWSJAzuHyzrmX9BeeQ==', Validators.required),
       opdusCods: new FormControl(null, Validators.required),
       token: new FormControl(null, Validators.required),
       recaptchaResponse: new FormControl('', Validators.required),
