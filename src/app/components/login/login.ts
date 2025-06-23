@@ -24,7 +24,7 @@ export class Login {
       recaptchaResponse: new FormControl('', Validators.required),
     });
 
-    // ✅ Chave pública PEM
+    // Chave pública PEM
     pemPublicKey = `-----BEGIN PUBLIC KEY-----
     MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsQecxIHHp8T3P2QRsPGd
     tCFnAdEpgG0WCFMp36kZQqqSn8q6ZB+89PZ1S6cUp6kUtUyeuI3vOoy1S87f0M2a
