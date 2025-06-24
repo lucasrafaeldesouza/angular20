@@ -1,9 +1,9 @@
-.success {
-  background-color: #4caf50;
-  color: white;
+.title {
+  font-size: 14px;
+  font-weight: 700;
 }
-
-.error {
-  background-color: #f44336;
-  color: white;
+.message {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
 }

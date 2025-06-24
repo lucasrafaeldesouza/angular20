@@ -9,7 +9,7 @@ export class Alert {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  mostrarAlert(title: string, message: string, messageType: 'error' | 'success') {
+  mostrarAlert(title: string, message: string, messageType: 'warning' | 'error' | 'success') {
     this.snackBar.openFromComponent(AlertComponent,{
       data: {
         title: title,
