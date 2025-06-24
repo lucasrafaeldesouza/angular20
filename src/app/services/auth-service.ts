@@ -35,10 +35,11 @@ export class AuthService {
 
   // Criptografar dados
   public async encryptData(publicKey: CryptoKey, data: string): Promise<string> {
-    const encoded = new TextEncoder().encode(data);
+    const asciiList = Array.from(data).map(char => char.charCodeAt(0)).join(',');
+    const encoded = new TextEncoder().encode(asciiList);
     const encrypted = await crypto.subtle.encrypt({ name: 'RSA-OAEP' }, publicKey, encoded);
     const encryptedBytes = new Uint8Array(encrypted);
-    return btoa(String.fromCharCode(...encryptedBytes)); // Base64
+    return btoa(String.fromCharCode(...encryptedBytes));
   }
   
 }

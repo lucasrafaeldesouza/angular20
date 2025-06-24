@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth-service';
+import { Alert } from '../../services/alert';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ export class Login {
 
     private http = inject(HttpClient);
     private auth = inject(AuthService);
+
+    constructor(private snackBar: Alert) {}
     
     loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
@@ -45,6 +48,30 @@ export class Login {
       };
       this.http.post('/rede/apirest/users/validaNovo', loginData).subscribe((res: any) => {
           console.log(res)
+          const tipo = res.tipo;
+          switch (tipo) {
+            case "critica":
+              console.log("critica");
+              this.snackBar.mostrarAlert('Atenção', res.mensagem, 'error')
+            break;
+            case "TROCA_SENHA":
+              console.log("TROCA_SENHA");
+            break;
+            case "SELECIONA_OPERADORA":
+              console.log("SELECIONA_OPERADORA");
+            break;
+            case "erro":
+              console.log("erro");
+            break;
+            case "ACEITA_TERMOS":
+              console.log("ACEITA_TERMOS");
+            break;
+            case "VALIDA_EMAIL":
+              console.log("VALIDA_EMAIL");
+            break;
+            default:
+              console.log("Login realizado com sucesso");
+          }
       })
     }
 }
