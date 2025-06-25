@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth-service';
 import { Alert } from '../../services/alert';
+import { TrocaSenha } from "../troca-senha/troca-senha";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
-  imports: [ ReactiveFormsModule, CommonModule ],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
@@ -17,7 +19,7 @@ export class Login {
     private http = inject(HttpClient);
     private auth = inject(AuthService);
 
-    constructor(private snackBar: Alert) {}
+    constructor(private snackBar: Alert, private troca_senha: NgbModal) {}
     
     loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
@@ -56,6 +58,7 @@ export class Login {
             // break;
             case "TROCA_SENHA":
               console.log("TROCA_SENHA");
+              const modalRef = this.troca_senha.open(TrocaSenha);
             break;
             // case "SELECIONA_OPERADORA":
             //   console.log("SELECIONA_OPERADORA");

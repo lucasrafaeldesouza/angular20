@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h4 class="modal-title">Crie uma nova senha</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close('Close click')"></button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="mb-3">
+            <label class="form-label">Nova Senha *</label>
+            <div class="input-group">
+                <input type="password" class="form-control form-control-lg" required/>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Confirme a Nova Senha *</label>
+            <div class="input-group">
+                <input type="password" class="form-control form-control-lg" required/>
+            </div>
+        </div>
+    </form>
+    <p>
+        <button type="button" class="btn btn-outline-success" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            A nova senha deve conter
+        </button>
+    </p>
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">pelo menos 8 caracteres</li>
+            <li class="list-group-item">pelo menos 1 caracter maiúsculo</li>
+            <li class="list-group-item">pelo menos 1 caracter minúsculo</li>
+            <li class="list-group-item">pelo menos 2 números</li>
+            <li class="list-group-item">pelo menos 1 caracter especial</li>
+            <li class="list-group-item">ser diferente das últimas 4 senhas utilizadas anteriormente</li>
+        </ul>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Cancelar</button>
+    <button type="button" class="btn btn-success">Enviar</button>
+</div>
