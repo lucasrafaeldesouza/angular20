@@ -19,7 +19,7 @@ export class Login {
     private http = inject(HttpClient);
     private auth = inject(AuthService);
 
-    constructor(private snackBar: Alert, private troca_senha: NgbModal) {}
+    constructor(private snackBar: Alert, private troca_senha: NgbModal, private modalService: NgbModal) {}
     
     loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
@@ -40,6 +40,10 @@ export class Login {
     iwIDAQAB
     -----END PUBLIC KEY-----`;
 
+    public info = {
+      usisCod: '',
+      token: ''
+    }
     async login() {
       const formValue = this.loginForm.value;
       const publicKey = await this.auth.importPublicKey(this.pemPublicKey);
@@ -51,14 +55,19 @@ export class Login {
       this.http.post('/rede/apirest/users/validaNovo', loginData).subscribe((res: any) => {
           console.log(res)
           const tipo = 'TROCA_SENHA';
+          this.info = {
+            usisCod: res.parametros.usisCod,
+            token: res.parametros.token
+          }
           switch (tipo) {
             // case "critica":
             //   console.log("critica");
             //   this.snackBar.mostrarAlert('Atenção', res.mensagem, 'warning')
             // break;
             case "TROCA_SENHA":
-              console.log("TROCA_SENHA");
-              const modalRef = this.troca_senha.open(TrocaSenha);
+              // const modalRef = this.troca_senha.open(TrocaSenha);
+              const modalRef = this.modalService.open(TrocaSenha);
+              modalRef.componentInstance.info = this.info;
             break;
             // case "SELECIONA_OPERADORA":
             //   console.log("SELECIONA_OPERADORA");
