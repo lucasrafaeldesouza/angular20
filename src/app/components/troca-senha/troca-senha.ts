@@ -5,10 +5,11 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { validaSenhaForte } from '../../validators/valida-senha';
 import { AuthService } from '../../services/auth-service';
 import { HttpClient } from '@angular/common/http';
+import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-troca-senha',
-  imports: [NgbCollapseModule, ReactiveFormsModule],
+  imports: [NgbCollapseModule, ReactiveFormsModule, NgbProgressbarModule],
   templateUrl: './troca-senha.html',
   styleUrl: './troca-senha.css'
 })
@@ -19,6 +20,8 @@ export class TrocaSenha {
   isCollapsed = true;
   valid_senha = false;
   messageError = '';
+  progress = 0;
+  progress_bar = false;
 
   private auth = inject(AuthService);
   private http = inject(HttpClient);
@@ -60,6 +63,7 @@ export class TrocaSenha {
       return true
   }
   async troca_senha() {
+    this.progress_bar = true
     if (!this.validSenha()) {
       this.valid_senha = true
       return false
@@ -70,7 +74,8 @@ export class TrocaSenha {
     const publicKey = await this.auth.importPublicKey(this.pemPublicKey);
     const encryptedPassword = await this.auth.encryptData(publicKey, formValue.new_password!);
     const data = {
-      usisCod: this.info.usisCod,
+      // usisCod: this.info.usisCod,
+      usisCod: 51507,
       opdusDscSenha: encryptedPassword
     };
     const dataSave = {
@@ -85,12 +90,16 @@ export class TrocaSenha {
     return true
   }
   salvaNovaSenha(dataSave: any) {
-    this.http.post('/rede/apirest/rda02/salvaNovaSenha', dataSave).subscribe((res: any) => {
-      console.log(res)
-      if(res.tipo == 'sucesso') {
-        this.activeModal.close('Data saved successfully') 
-      }
-    })
+    setInterval(() => {this.progress += 20},1000)
+    setTimeout(() => {
+      this.http.post('/rede/apirest/rda02/salvaNovaSenha', dataSave).subscribe((res: any) => {
+        console.log(res)
+        if(res.tipo == 'sucesso') {
+          this.activeModal.close()
+        }
+      })
+    },5000)
+
   }
 
 }
