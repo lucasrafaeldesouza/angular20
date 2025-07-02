@@ -37,9 +37,7 @@
             </ul>
         </div>
         @if(progress_bar) {
-            <p style="text-align: center;">Enviando</p>
-            <ngb-progressbar class="mb-3" type="success" height="4px" [value]="progress" />
-            <p style="text-align: center;">{{ progress + '%'}}</p>
+            <app-progress-bar [progress]="progress"></app-progress-bar>
         }
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Cancelar</button>

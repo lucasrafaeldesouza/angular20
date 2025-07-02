@@ -6,10 +6,12 @@ import { validaSenhaForte } from '../../validators/valida-senha';
 import { AuthService } from '../../services/auth-service';
 import { HttpClient } from '@angular/common/http';
 import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
+import { Alert } from '../../services/alert';
+import { ProgressBar } from '../progress-bar/progress-bar';
 
 @Component({
   selector: 'app-troca-senha',
-  imports: [NgbCollapseModule, ReactiveFormsModule, NgbProgressbarModule],
+  imports: [NgbCollapseModule, ReactiveFormsModule, NgbProgressbarModule, ProgressBar],
   templateUrl: './troca-senha.html',
   styleUrl: './troca-senha.css'
 })
@@ -25,6 +27,7 @@ export class TrocaSenha {
 
   private auth = inject(AuthService);
   private http = inject(HttpClient);
+  private snackBar = inject(Alert);
 
   constructor(public activeModal: NgbActiveModal) { }
   
@@ -90,16 +93,15 @@ export class TrocaSenha {
     return true
   }
   salvaNovaSenha(dataSave: any) {
-    setInterval(() => {this.progress += 20},1000)
-    setTimeout(() => {
-      this.http.post('/rede/apirest/rda02/salvaNovaSenha', dataSave).subscribe((res: any) => {
+    this.progress = 50;
+    this.http.post('/rede/apirest/rda02/salvaNovaSenha', dataSave).subscribe((res: any) => {
         console.log(res)
         if(res.tipo == 'sucesso') {
+          this.progress = 100;
           this.activeModal.close()
-        }
-      })
-    },5000)
-
+          this.snackBar.mostrarAlert(res.tipo+'!' , res.mensagem, 'success')
+      }
+    })
   }
 
 }
