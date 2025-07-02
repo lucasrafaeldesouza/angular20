@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h4 class="modal-title">Selecione a operadora</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close('Close click')"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="selecionarOp" (submit)="seleciona_op()">
+        <div class="mb-3">
+            <label class="form-label">Operadora</label>
+            <select class="form-select" aria-label="Default select example" formControlName="state">
+                @for (state of info; track $index) {
+                    <option [ngValue]="state">{{ state.parametros.opedrFDscOpedr }}</option>
+                }
+            </select>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Cancelar</button>
+    <button type="submit" class="btn btn-success">Ok</button>
+</div>

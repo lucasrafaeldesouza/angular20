@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth-service';
 import { Alert } from '../../services/alert';
 import { TrocaSenha } from "../troca-senha/troca-senha";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SelecionarOperadora } from '../selecionar-operadora/selecionar-operadora';
 
 @Component({
   selector: 'app-login',
@@ -53,8 +54,8 @@ export class Login {
         password: encryptedPassword
       };
       this.http.post('/rede/apirest/users/validaNovo', loginData).subscribe((res: any) => {
-          console.log(res)
-          const tipo = 'TROCA_SENHA';
+          // console.log(res)
+          const tipo = res.tipo;
           this.info = {
             usisCod: res.parametros.usisCod,
             token: res.parametros.token
@@ -65,13 +66,13 @@ export class Login {
             //   this.snackBar.mostrarAlert('Atenção', res.mensagem, 'warning')
             // break;
             case "TROCA_SENHA":
-              // const modalRef = this.troca_senha.open(TrocaSenha);
-              const modalRef = this.modalService.open(TrocaSenha);
-              modalRef.componentInstance.info = this.info;
+              const modalTrocaSenha = this.modalService.open(TrocaSenha);
+              modalTrocaSenha.componentInstance.info = this.info;
             break;
-            // case "SELECIONA_OPERADORA":
-            //   console.log("SELECIONA_OPERADORA");
-            // break;
+            case "SELECIONA_OPERADORA":
+              const modalSelecionarOperadora = this.modalService.open(SelecionarOperadora);
+              modalSelecionarOperadora.componentInstance.info = JSON.parse(res.parametros.dadosDeLogin);
+            break;
             // case "erro":
             //   console.log("erro");
             //   this.snackBar.mostrarAlert('Erro ao realizar a operação', res.mensagem, 'error')
