@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title">Verificação de 2 etapas</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close('Close click')"></button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="mb-3">
+           <label class="form-label">Insira o Código que enviamos no seu e-mail:</label>
+           <input type="text" maxlength="6" class="form-control form-control-lg" required/>
+        </div>
+    </form>
+    <button class="btn btn-success">Enviar Novo E-mail</button>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Cancelar</button>
+    <button type="submit" class="btn btn-success">Validar</button>
+</div>

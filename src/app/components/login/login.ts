@@ -8,6 +8,7 @@ import { TrocaSenha } from "../troca-senha/troca-senha";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SelecionarOperadora } from '../selecionar-operadora/selecionar-operadora';
 import { AceitaTermos } from '../aceita-termos/aceita-termos';
+import { DoisFatores } from '../dois-fatores/dois-fatores';
 
 @Component({
   selector: 'app-login',
@@ -62,10 +63,9 @@ export class Login {
             token: res.parametros.token
           }
           switch (tipo) {
-            // case "critica":
-            //   console.log("critica");
-            //   this.snackBar.mostrarAlert('Atenção', res.mensagem, 'warning')
-            // break;
+            case "critica":
+              this.snackBar.mostrarAlert('Atenção', res.mensagem, 'warning')
+            break;
             case "TROCA_SENHA":
               const modalTrocaSenha = this.modalService.open(TrocaSenha);
               modalTrocaSenha.componentInstance.info = this.info;
@@ -74,17 +74,17 @@ export class Login {
               const modalSelecionarOperadora = this.modalService.open(SelecionarOperadora);
               modalSelecionarOperadora.componentInstance.info = JSON.parse(res.parametros.dadosDeLogin);
             break;
-            // case "erro":
-            //   console.log("erro");
-            //   this.snackBar.mostrarAlert('Erro ao realizar a operação', res.mensagem, 'error')
-            // break;
+            case "erro":
+              this.snackBar.mostrarAlert('Erro ao realizar a operação', res.mensagem, 'error')
+            break;
             case "ACEITA_TERMOS":
-              console.log("ACEITA_TERMOS");
               const modalAceitaTermos = this.modalService.open(AceitaTermos);
               modalAceitaTermos.componentInstance.info = res.parametros;
             break;
-            // case "VALIDA_EMAIL":
-            //   console.log("VALIDA_EMAIL");
+            case "VALIDA_EMAIL":
+              console.log("VALIDA_EMAIL");
+              const modalDoisFatores = this.modalService.open(DoisFatores);
+              modalDoisFatores.componentInstance.info = res.parametros;
             break;
             default:
               console.log("login");
