@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h4 class="modal-title">Termos de uso e privacidade</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close('Close click')"></button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="mb-3">
+            <p>{{ textoTermoUso }}</p>
+            <p><a class="link-opacity-100" href="#">Termos de Uso da Plataforma</a></p>
+            <p><a class="link-opacity-100" href="#">Políticas de Privacidade</a></p>
+            <p>{{ versaoTermoUso }}</p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{ opcaoTermoUso }}
+                </label>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Recusar</button>
+    <button type="submit" class="btn btn-success">Aceitar</button>
+</div>

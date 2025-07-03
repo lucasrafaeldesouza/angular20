@@ -36,3 +36,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .btn-success {
     background-color: #1BA345;
 }
+.form-check-input[type="checkbox"] {
+    border-color: #1BA345;
+}
+.form-check-input[type=checkbox]:checked{
+    background-color: #04a45c !important;
+}
+.form-control-lg {
+    border-color: #1BA345;
+}

@@ -7,6 +7,7 @@ import { Alert } from '../../services/alert';
 import { TrocaSenha } from "../troca-senha/troca-senha";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SelecionarOperadora } from '../selecionar-operadora/selecionar-operadora';
+import { AceitaTermos } from '../aceita-termos/aceita-termos';
 
 @Component({
   selector: 'app-login',
@@ -54,7 +55,7 @@ export class Login {
         password: encryptedPassword
       };
       this.http.post('/rede/apirest/users/validaNovo', loginData).subscribe((res: any) => {
-          console.log(res)
+          // console.log(res)
           const tipo = res.tipo;
           this.info = {
             usisCod: res.parametros.usisCod,
@@ -77,9 +78,11 @@ export class Login {
             //   console.log("erro");
             //   this.snackBar.mostrarAlert('Erro ao realizar a operação', res.mensagem, 'error')
             // break;
-            // case "ACEITA_TERMOS":
-            //   console.log("ACEITA_TERMOS");
-            // break;
+            case "ACEITA_TERMOS":
+              console.log("ACEITA_TERMOS");
+              const modalAceitaTermos = this.modalService.open(AceitaTermos);
+              modalAceitaTermos.componentInstance.info = res.parametros;
+            break;
             // case "VALIDA_EMAIL":
             //   console.log("VALIDA_EMAIL");
             break;
