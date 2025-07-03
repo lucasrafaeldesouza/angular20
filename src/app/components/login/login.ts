@@ -54,7 +54,7 @@ export class Login {
         password: encryptedPassword
       };
       this.http.post('/rede/apirest/users/validaNovo', loginData).subscribe((res: any) => {
-          // console.log(res)
+          console.log(res)
           const tipo = res.tipo;
           this.info = {
             usisCod: res.parametros.usisCod,
