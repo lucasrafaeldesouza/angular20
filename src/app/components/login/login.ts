@@ -9,6 +9,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SelecionarOperadora } from '../selecionar-operadora/selecionar-operadora';
 import { AceitaTermos } from '../aceita-termos/aceita-termos';
 import { DoisFatores } from '../dois-fatores/dois-fatores';
+import { Router } from '@angular/router';
+import { SessaoService } from '../../services/sessao-service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,9 @@ export class Login {
     private http = inject(HttpClient);
     private auth = inject(AuthService);
 
-    constructor(private snackBar: Alert, private troca_senha: NgbModal, private modalService: NgbModal) {}
+    constructor(private snackBar: Alert, private troca_senha: NgbModal, private modalService: NgbModal, private router: Router, private sessaoService: SessaoService,) {
+      this.sessaoService.limparSessao()
+    }
     
     loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
@@ -47,6 +51,10 @@ export class Login {
       usisCod: '',
       token: ''
     }
+    public resposta = {
+        accessToken: '',
+        nome: '',
+    }
     async login() {
       const formValue = this.loginForm.value;
       const publicKey = await this.auth.importPublicKey(this.pemPublicKey);
@@ -61,6 +69,10 @@ export class Login {
           this.info = {
             usisCod: res.parametros.usisCod,
             token: res.parametros.token
+          }
+          this.resposta = {
+              accessToken: 'aaa',
+              nome: 'ConsoleLog',
           }
           switch (tipo) {
             case "critica":
@@ -88,7 +100,8 @@ export class Login {
             break;
             default:
               console.log("login");
-              this.snackBar.mostrarAlert('Bem Vindo', res.mensagem, 'success')
+              this.sessaoService.salvarSessao(this.resposta);
+              this.router.navigate(['/home']);
           }
       })
     }
