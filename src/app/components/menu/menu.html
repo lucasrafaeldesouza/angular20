@@ -1,2 +1,4 @@
-<p>menu works!</p>
-<router-outlet />
+<app-sidebar [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()" (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)"/>
+<div class="body">
+    <router-outlet />
+</div>
