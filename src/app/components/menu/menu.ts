@@ -31,7 +31,8 @@ export class Menu {
   }
 
   ngOnInit(): void {
-    this.isLeftSidebarCollapsed.set(this.screenWidth() < 768);
+    this.isLeftSidebarCollapsed.set(true);
+    // this.isLeftSidebarCollapsed.set(this.screenWidth() < 768);
   }
 
   changeIsLeftSidebarCollapsed(isLeftSidebarCollapsed: boolean): void {

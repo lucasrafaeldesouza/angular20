@@ -96,3 +96,59 @@
 .active .sidenav-link-text {
   color: #000;
 }
+i {
+  margin-right: 0.75rem;
+
+  &.sidebar-item-arrow {
+    margin-left: auto;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+
+    &.rotated {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.submenu-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.submenu-line {
+  width: 2px;
+  background-color: #A5CD64;
+  margin-left: 20px;
+  margin-right: 0.5rem;
+  border-radius: 2px;
+}
+
+.submenu {
+  list-style: none; 
+  padding-left: 2.5rem;
+  margin: 0.5rem 0;
+}
+
+.submenu-item {
+  margin-bottom: 0.5rem;
+}
+
+.submenu-link {
+  display: flex;
+  align-items: center;
+  color: #dcdcdc;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.submenu-link:hover {
+  color: #A5CD64;
+}
+
+.submenu-icon {
+  margin-right: 0.5rem;
+  font-size: 16px;
+}
