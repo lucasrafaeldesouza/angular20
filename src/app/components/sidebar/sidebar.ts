@@ -41,7 +41,7 @@ export class Sidebar {
         { icon: 'fas fa-tasks', label: 'Tabela de preços Base' },
         { icon: 'fas fa-tasks', label: 'Modelos de contratos' },
         { icon: 'fas fa-tasks', label: 'Histórico de atualizações' },
-        { icon: 'fas fa-tasks', label: 'Histórico de interações' },
+        { icon: 'fas fa-tasks', label: 'Coeficientes da dimensionamento' },
         { icon: 'fas fa-chart-pie', label: 'Repositório' },
         { icon: 'fas fa-tasks', label: 'Comunicados' },
         { icon: 'fas fa-tasks', label: 'Ocorrências' },

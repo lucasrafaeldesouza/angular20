@@ -45,10 +45,11 @@
   border-radius: 50%;
   background-color: transparent;
   border: none;
-}
-.sidenav .logo-container .btn-close .fa-times {
   color: #fff;
   font-size: 24px;
+  background: none !important;
+  font-size: 2rem;
+  padding: 0;
 }
 
 .sidenav-nav {
