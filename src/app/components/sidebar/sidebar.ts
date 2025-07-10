@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SidebarService } from '../../services/sidebar-service';
+import { HttpClient } from '@angular/common/http';
 
 interface MenuItem {
   icon: string;
@@ -16,6 +18,13 @@ interface MenuItem {
   styleUrl: './sidebar.css'
 })
 export class Sidebar {
+
+  private http = inject(HttpClient);
+
+  constructor(private sideBarService: SidebarService) {
+    const opdusCod = this.sideBarService.obterOpdusCod()
+    this.buscaItensMenu(opdusCod)
+  }
 
   isLeftSidebarCollapsed = input.required<boolean>();
   changeIsLeftSidebarCollapsed = output<boolean>();
@@ -58,6 +67,12 @@ export class Sidebar {
       label: 'Configurações',
     },
   ];
+
+  buscaItensMenu(opdusCod: number | undefined) {
+    this.http.get('/rede/apirest/controle_link_view/carregaVEstrutAcessoUsuar/'+opdusCod +'/'+"'M'"+'/'+null+'/'+null).subscribe((res: any) => {
+      console.log(res)
+    })
+  }
 
   toggleCollapse(): void {
     this.changeIsLeftSidebarCollapsed.emit(!this.isLeftSidebarCollapsed());

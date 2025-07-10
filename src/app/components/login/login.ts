@@ -11,6 +11,7 @@ import { AceitaTermos } from '../aceita-termos/aceita-termos';
 import { DoisFatores } from '../dois-fatores/dois-fatores';
 import { Router } from '@angular/router';
 import { SessaoService } from '../../services/sessao-service';
+import { SidebarService } from '../../services/sidebar-service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class Login {
     private http = inject(HttpClient);
     private auth = inject(AuthService);
 
-    constructor(private snackBar: Alert, private troca_senha: NgbModal, private modalService: NgbModal, private router: Router, private sessaoService: SessaoService,) {
+    constructor(private snackBar: Alert, private troca_senha: NgbModal, private modalService: NgbModal, private router: Router, private sessaoService: SessaoService, private sidebarService: SidebarService) {
       this.sessaoService.limparSessao()
     }
     
@@ -101,6 +102,7 @@ export class Login {
             default:
               console.log("login");
               this.sessaoService.salvarSessao(this.resposta);
+              this.sidebarService.itensMenuCtrl(res.parametros.opdusCod);
               this.router.navigate(['/home']);
           }
       })
