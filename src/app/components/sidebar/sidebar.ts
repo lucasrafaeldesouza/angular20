@@ -24,7 +24,6 @@ export class Sidebar {
 
   constructor(private sideBarService: SidebarService) {
     this.opdusCod = this.sideBarService.obterOpdusCod()
-    console.log(this.opdusCod)
     this.buscaItensMenu(this.opdusCod)
   }
 
