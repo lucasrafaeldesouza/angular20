@@ -20,10 +20,12 @@ interface MenuItem {
 export class Sidebar {
 
   private http = inject(HttpClient);
+  private opdusCod: number | undefined;
 
   constructor(private sideBarService: SidebarService) {
-    const opdusCod = this.sideBarService.obterOpdusCod()
-    this.buscaItensMenu(opdusCod)
+    this.opdusCod = this.sideBarService.obterOpdusCod()
+    console.log(this.opdusCod)
+    this.buscaItensMenu(this.opdusCod)
   }
 
   isLeftSidebarCollapsed = input.required<boolean>();
