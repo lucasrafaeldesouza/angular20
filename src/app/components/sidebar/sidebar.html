@@ -15,20 +15,20 @@
         <a class="sidenav-nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenuItem(item)">
           <i class="sidenav-link-icon" [class]="item.icon"></i>
           @if (!isLeftSidebarCollapsed()) {
-            <span class="sidenav-link-text">{{ item.label }}</span>
+            <span class="sidenav-link-text">{{ item.opaeDsc }}</span>
           }
-          @if (!isLeftSidebarCollapsed() && item.children) {
+          @if (!isLeftSidebarCollapsed() && item.vestrutAcessoUsuarItens) {
             <i class="fas fa-chevron-down sidebar-item-arrow" [ngClass]="{ rotated: item.isOpen }"></i>
           }
         </a>
-        @if (item.children && item.isOpen && !isLeftSidebarCollapsed()) {
+        @if (item.vestrutAcessoUsuarItens && item.isOpen && !isLeftSidebarCollapsed()) {
           <div class="submenu-container">
             <div class="submenu-line"></div>
             <ul class="submenu">
-              @for (child of item.children; track $index) {
+              @for (child of item.vestrutAcessoUsuarItens; track $index) {
                 <li class="submenu-item">
                   <a class="submenu-link">
-                    <span>{{ child.label }}</span>
+                    <span>{{ child.opaeDsc }}</span>
                   </a>
                 </li>
               }
