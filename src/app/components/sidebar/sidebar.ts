@@ -35,14 +35,24 @@ export class Sidebar {
   buscaItensMenu(opdusCod: number | undefined) {
     this.http.get('/rede/apirest/controle_link_view/carregaVEstrutAcessoUsuar/'+opdusCod +'/'+"'M'"+'/'+null+'/'+null).subscribe((res: any) => {
       console.log(res)
+      let itemFixo = {
+        icon: 'fal fa-book',
+        opaeDsc: 'Manuais',
+        vestrutAcessoUsuarItens: [
+          { icon: '', opaeDsc: 'Cadastro'},
+          { icon: '', opaeDsc: 'Dimensionamento'},
+          { icon: '', opaeDsc: 'Qualificação'}
+        ],
+        isOpen: false
+      }
       res.forEach(function(objeto: any) {
         switch (objeto.opaeDsc) {
           case "Cadastro":
             objeto.icon = "fal fa-plus"
-            break;
+          break;
           case "Administrador":
             objeto.icon = "fal fa-user-tie"
-            break;
+          break;
           case "Operadora":
             objeto.icon = "fal fa-user-headset"
           break;
@@ -64,7 +74,12 @@ export class Sidebar {
         }
       });
       this.items = res
+      this.items.push(itemFixo)
     })
+  }
+
+  logout() {
+    console.log('Usuário saiu');
   }
 
   toggleCollapse(): void {
