@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SidebarService } from '../../services/sidebar-service';
 import { HttpClient } from '@angular/common/http';
+import { ConfirmDialogService } from '../../services/confirm-dialog';
 
 interface MenuItem {
   icon: string;
@@ -22,7 +23,7 @@ export class Sidebar {
   private http = inject(HttpClient);
   private opdusCod: number | undefined;
 
-  constructor(private sideBarService: SidebarService) {
+  constructor(private sideBarService: SidebarService, private ConfirmDialogService: ConfirmDialogService, private router: Router) {
     this.opdusCod = this.sideBarService.obterOpdusCod()
     this.buscaItensMenu(this.opdusCod)
   }
@@ -79,7 +80,12 @@ export class Sidebar {
   }
 
   logout() {
-    console.log('Usuário saiu');
+    this.ConfirmDialogService.confirm("Tem certeza disso?", "Deseja realmente sair do sistema PRIMe?", "Sim, quero sair", "Não").then((confirmed) => {
+      console.log(confirmed)
+      if(confirmed){
+        this.router.navigate(['']);
+      }
+    })
   }
 
   toggleCollapse(): void {

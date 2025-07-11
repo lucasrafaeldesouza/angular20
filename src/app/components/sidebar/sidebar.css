@@ -52,7 +52,16 @@
   padding: 0;
 }
 
+.sidenav-nav::-webkit-scrollbar {
+  width: 6px;
+}
+.sidenav-nav::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
 .sidenav-nav {
+  overflow-y: auto;
   list-style: none;
   padding: 0.938rem;
   margin: 0;
