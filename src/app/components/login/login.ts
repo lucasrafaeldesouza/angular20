@@ -12,6 +12,7 @@ import { DoisFatores } from '../dois-fatores/dois-fatores';
 import { Router } from '@angular/router';
 import { SessaoService } from '../../services/sessao-service';
 import { SidebarService } from '../../services/sidebar-service';
+import { HeaderService } from '../../services/header-service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class Login {
     private http = inject(HttpClient);
     private auth = inject(AuthService);
 
-    constructor(private snackBar: Alert, private troca_senha: NgbModal, private modalService: NgbModal, private router: Router, private sessaoService: SessaoService, private sidebarService: SidebarService) {
+    constructor(private snackBar: Alert, private troca_senha: NgbModal, private modalService: NgbModal, private router: Router, private sessaoService: SessaoService, 
+      private sidebarService: SidebarService, private headerService: HeaderService) {
       this.sessaoService.limparSessao()
     }
     
@@ -103,6 +105,7 @@ export class Login {
               console.log("login");
               this.sessaoService.salvarSessao(this.resposta);
               this.sidebarService.itensMenuCtrl(res.parametros.opdusCod);
+              this.headerService.itensHeader(res.parametros.opdusNom);
               this.router.navigate(['/bemVindo']);
           }
       })
