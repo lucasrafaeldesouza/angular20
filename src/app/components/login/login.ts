@@ -65,7 +65,7 @@ export class Login {
         password: encryptedPassword
       };
       this.http.post('/rede/apirest/users/validaNovo', loginData).subscribe((res: any) => {
-          // console.log(res)
+          console.log(res)
           const tipo = res.tipo;
           this.info = {
             usisCod: res.parametros.usisCod,
@@ -103,7 +103,7 @@ export class Login {
               console.log("login");
               this.sessaoService.salvarSessao(this.resposta);
               this.sidebarService.itensMenuCtrl(res.parametros.opdusCod);
-              this.router.navigate(['/home']);
+              this.router.navigate(['/bemVindo']);
           }
       })
     }

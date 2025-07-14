@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { Sessao } from '../../models/sessao.model';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-header',
   imports: [],
-  templateUrl: './home.html',
-  styleUrl: './home.css'
+  templateUrl: './header.html',
+  styleUrl: './header.css'
 })
-export class Home {
+export class Header {
   
   title = "consolelog-guards";
   sessao$: Observable<Sessao | null>;

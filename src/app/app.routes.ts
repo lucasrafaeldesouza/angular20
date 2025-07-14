@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Login } from './components/login/login';
-import { Home } from './components/home/home';
+import { Header } from './components/header/header';
 import { AuthGuard } from './_guard/auth-guard';
 import { Menu } from './components/menu/menu';
 
@@ -14,8 +14,8 @@ export const routes: Routes = [
         component: Menu,
         children: [
             { 
-                path: 'home', 
-                component: Home,
+                path: 'bemVindo', 
+                component: Header,
                 canActivate: [AuthGuard]
             },
         ],
