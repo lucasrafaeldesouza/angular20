@@ -56,7 +56,6 @@ export class Login {
     }
     public resposta = {
         accessToken: '',
-        nome: '',
     }
     async login() {
       const formValue = this.loginForm.value;
@@ -74,8 +73,7 @@ export class Login {
             token: res.parametros.token
           }
           this.resposta = {
-              accessToken: 'aaa',
-              nome: 'ConsoleLog',
+              accessToken: res.parametros.usisCod,
           }
           switch (tipo) {
             case "critica":
