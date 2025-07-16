@@ -45,3 +45,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .form-control-lg {
     border-color: #1BA345;
 }
+.popover-body{
+    white-space: pre-line;
+}
+.popover-notificacoes {
+  min-width: 300px;
+  max-width: 400px;
+  text-align: left;
+}

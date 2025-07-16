@@ -105,7 +105,7 @@ export class Login {
               console.log("login");
               this.sessaoService.salvarSessao(this.resposta);
               this.sidebarService.itensMenuCtrl(res.parametros.opdusCod);
-              this.headerService.itensHeader(res.parametros.opdusNom);
+              this.headerService.itensHeader(res.parametros.opdusNom, res.parametros.opdusCod);
               this.router.navigate(['/bemVindo']);
           }
       })

@@ -7,7 +7,18 @@
       <input class="form-control" type="text" placeholder="Operadora" aria-label="Disabled input example" disabled>
       <input class="form-control" type="text" placeholder="Prestador" aria-label="Disabled input example" disabled>
       <i class="fal fa-question fa-lg"></i>
-      <i class="fal fa-bell fa-lg"></i>
+      <ng-template #notificacaoPopover>
+        <div [innerHTML]="notificacoesTexto"></div>
+      </ng-template>
+      @if(qtd_notification > 0) {
+        <button type="button" class="btn btn-secondary position-relative me-2" [ngbPopover]="notificacaoPopover" [placement]="'bottom-start'" popoverClass="popover-notificacoes">
+          <i class="fal fa-bell fa-lg"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{qtd_notification}}
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </button>
+      }
       <div style="height: 24px; border-left: 1px solid #ccc;"></div>
       <i class="fal fa-user fa-lg"></i>
     </div>
