@@ -22,8 +22,8 @@ export class SelecionarOperadora {
   });
 
   seleciona_op() {
-    console.log('seleciona_op')
-    console.log(this.selecionarOp.value.state)
+    // console.log('seleciona_op')
+    // console.log(this.selecionarOp.value.state)
   }
 
 }

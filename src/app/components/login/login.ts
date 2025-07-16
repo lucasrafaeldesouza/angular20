@@ -97,12 +97,10 @@ export class Login {
               modalAceitaTermos.componentInstance.info = res.parametros;
             break;
             case "VALIDA_EMAIL":
-              console.log("VALIDA_EMAIL");
               const modalDoisFatores = this.modalService.open(DoisFatores);
               modalDoisFatores.componentInstance.info = res.parametros;
             break;
             default:
-              console.log("login");
               this.sessaoService.salvarSessao(this.resposta);
               this.sidebarService.itensMenuCtrl(res.parametros.opdusCod);
               this.headerService.itensHeader(res.parametros.opdusNom, res.parametros.opdusCod);

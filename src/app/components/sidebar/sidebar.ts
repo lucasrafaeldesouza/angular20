@@ -35,7 +35,6 @@ export class Sidebar {
 
   buscaItensMenu(opdusCod: number) {
     this.http.get('/rede/apirest/controle_link_view/carregaVEstrutAcessoUsuar/'+opdusCod +'/'+"'M'"+'/'+null+'/'+null).subscribe((res: any) => {
-      console.log(res)
       let itemFixo = {
         icon: 'fal fa-book',
         opaeDsc: 'Manuais',
@@ -81,7 +80,6 @@ export class Sidebar {
 
   logout() {
     this.ConfirmDialogService.confirm("Tem certeza disso?", "Deseja realmente sair do sistema PRIMe?", "Sim, quero sair", "Não").then((confirmed) => {
-      console.log(confirmed)
       if(confirmed){
         this.router.navigate(['']);
       }

@@ -38,7 +38,6 @@ export class Header {
 
   obterNotificacoesPendentes(opdusCod: number) {
     this.http.get('/rede/apirest/rdr04/obterPendentes/'+opdusCod).subscribe((res: any) => {
-      console.log(res)
       this.qtd_notification = res;
     })
   }
@@ -120,7 +119,6 @@ export class Header {
     .set('columns[1][orderable]', 'true')
     .set('opdus_cod', this.opdusCod); //
     this.http.get('/rede/apirest/rdr04/listar',{ params }).subscribe((res: any) => {
-      console.log(res.data)
       this.items = res.data
     })
   }

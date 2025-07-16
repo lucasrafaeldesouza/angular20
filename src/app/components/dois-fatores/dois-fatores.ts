@@ -13,6 +13,5 @@ export class DoisFatores {
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit() {
-    console.log(this.info)
   }
 }

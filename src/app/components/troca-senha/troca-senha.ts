@@ -32,7 +32,6 @@ export class TrocaSenha {
   constructor(public activeModal: NgbActiveModal) { }
   
   ngOnInit() {
-    console.log(this.info);
   }
 
   trocaSenhaForm = new FormGroup({
@@ -59,7 +58,6 @@ export class TrocaSenha {
       }
       const senhaFraca = this.trocaSenhaForm.get('new_password');
       if (senhaFraca?.errors) {
-        console.log(senhaFraca.errors);
         this.messageError = 'Sua senha está fraca, veja os requisitos minimos abaixo...'
         return false;
       }
@@ -95,7 +93,6 @@ export class TrocaSenha {
   salvaNovaSenha(dataSave: any) {
     this.progress = 50;
     this.http.post('/rede/apirest/rda02/salvaNovaSenha', dataSave).subscribe((res: any) => {
-        console.log(res)
         if(res.tipo == 'sucesso') {
           this.progress = 100;
           this.activeModal.close()
