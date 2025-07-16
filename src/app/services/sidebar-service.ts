@@ -4,11 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SidebarService {
-  private opdusCod: number | undefined;
+  private opdusCod: number;
 
   constructor() {
     const cod = localStorage.getItem('opdusCod');
-    this.opdusCod = cod ? parseInt(cod, 10) : undefined;
+    this.opdusCod = cod ? parseInt(cod, 10) : 0;
   }
 
   itensMenuCtrl(opdusCod: number) {

@@ -21,7 +21,7 @@ interface MenuItem {
 export class Sidebar {
 
   private http = inject(HttpClient);
-  private opdusCod: number | undefined;
+  private opdusCod: number;
 
   constructor(private sideBarService: SidebarService, private ConfirmDialogService: ConfirmDialogService, private router: Router) {
     this.opdusCod = this.sideBarService.obterOpdusCod()
@@ -33,7 +33,7 @@ export class Sidebar {
 
   items: MenuItem[] = [];
 
-  buscaItensMenu(opdusCod: number | undefined) {
+  buscaItensMenu(opdusCod: number) {
     this.http.get('/rede/apirest/controle_link_view/carregaVEstrutAcessoUsuar/'+opdusCod +'/'+"'M'"+'/'+null+'/'+null).subscribe((res: any) => {
       console.log(res)
       let itemFixo = {
