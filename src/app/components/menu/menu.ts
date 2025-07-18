@@ -1,11 +1,12 @@
 import { Component, computed, HostListener, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Sidebar } from "../sidebar/sidebar";
 import { CommonModule } from '@angular/common';
+import { Header } from "../header/header";
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterOutlet, Sidebar, CommonModule],
+  imports: [RouterOutlet, Sidebar, CommonModule, Header],
   templateUrl: './menu.html',
   styleUrl: './menu.css'
 })
@@ -32,7 +33,6 @@ export class Menu {
 
   ngOnInit(): void {
     this.isLeftSidebarCollapsed.set(true);
-    // this.isLeftSidebarCollapsed.set(this.screenWidth() < 768);
   }
 
   changeIsLeftSidebarCollapsed(isLeftSidebarCollapsed: boolean): void {

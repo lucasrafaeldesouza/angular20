@@ -81,7 +81,7 @@ export class Sidebar {
   logout() {
     this.ConfirmDialogService.confirm("Tem certeza disso?", "Deseja realmente sair do sistema PRIMe?", "Sim, quero sair", "Não").then((confirmed) => {
       if(confirmed){
-        this.router.navigate(['']);
+        this.router.navigate(['/login']);
       }
     })
   }

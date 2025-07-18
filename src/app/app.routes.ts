@@ -3,21 +3,34 @@ import { Login } from './components/login/login';
 import { Header } from './components/header/header';
 import { AuthGuard } from './_guard/auth-guard';
 import { Menu } from './components/menu/menu';
+import { Prestador } from './components/prestador/prestador';
+import { Home } from './components/home/home';
 
 export const routes: Routes = [
     {
-        path: "",
+        path: "login",
         component: Login
     },
     {
-        path: '',
+        path: 'bemVindo',
         component: Menu,
+        canActivate: [AuthGuard],
         children: [
             { 
-                path: 'bemVindo', 
-                component: Header,
-                canActivate: [AuthGuard]
+                path: '', 
+                component: Home
             },
         ],
     },
+    {
+        path: 'consultarPrestadoresP',
+        component: Menu,
+        canActivate: [AuthGuard],
+        children: [
+            { 
+                path: '', 
+                component: Prestador
+            },
+        ],
+    }
 ];
