@@ -1,8 +1,6 @@
 .header {
   width: calc(100% - 5rem);
   margin-left: 5rem;
-  z-index: 0;
-  position: relative;
   top: 0;
   transition: all 0.5s ease;
   background: #F6F7F4;
@@ -14,7 +12,7 @@
   margin-left: 5rem;
   top: 0;
   transition: all 0.5s ease;
-  background: #FFF;
+  background: #F6F7F4;
   padding: 1rem;
 }
 /* .body-trimmed {

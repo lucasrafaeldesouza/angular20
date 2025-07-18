@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 import { SessaoService } from '../../services/sessao-service';
 import { Observable } from 'rxjs';
 import { Sessao } from '../../models/sessao.model';
-import { HeaderService } from '../../services/header-service';
 import { HttpClient } from '@angular/common/http';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpParams } from '@angular/common/http';
+import { InfoUserLogin } from '../../services/info-user-login';
 
 interface Notificacoes {
   fdscTipoOcorr: string;
@@ -28,10 +28,10 @@ export class Header {
 
   title = "consolelog-guards";
   sessao$: Observable<Sessao | null>;
-  constructor(private sessaoService: SessaoService, private headerService: HeaderService) {
+  constructor(private sessaoService: SessaoService, private infoUserLogin: InfoUserLogin) {
     this.sessao$ = this.sessaoService.getSessao();
-    this.opdusNom = this.headerService.obterOpdusNom()
-    this.opdusCod = this.headerService.obterOpdusCod()
+    this.opdusNom = this.infoUserLogin.getOpdusNom()
+    this.opdusCod = this.infoUserLogin.getOpdusCod()
     this.obterNotificacoesPendentes(this.opdusCod)
     this.obterNotificacoesPendentesList()
   }

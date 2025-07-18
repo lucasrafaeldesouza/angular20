@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { SidebarService } from '../../services/sidebar-service';
 import { HttpClient } from '@angular/common/http';
 import { ConfirmDialogService } from '../../services/confirm-dialog';
+import { InfoUserLogin } from '../../services/info-user-login';
 
 interface MenuItem {
   icon: string;
@@ -23,8 +23,8 @@ export class Sidebar {
   private http = inject(HttpClient);
   private opdusCod: number;
 
-  constructor(private sideBarService: SidebarService, private ConfirmDialogService: ConfirmDialogService, private router: Router) {
-    this.opdusCod = this.sideBarService.obterOpdusCod()
+  constructor(private infoUserLogin: InfoUserLogin,  private ConfirmDialogService: ConfirmDialogService, private router: Router) {
+    this.opdusCod = this.infoUserLogin.getOpdusCod()
     this.buscaItensMenu(this.opdusCod)
   }
 

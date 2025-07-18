@@ -1,7 +1,7 @@
 <div class="header-container">
   <div class="d-flex justify-content-between align-items-center py-2">
     <div>
-      <h3 class="mb-0">Olá, {{opdusNom}}</h3>
+      <h5 class="mb-0">Olá, {{opdusNom}}</h5>
     </div>
     <div class="d-flex align-items-center gap-3">
       <input class="form-control" type="text" placeholder="Operadora" aria-label="Disabled input example" disabled>
@@ -11,13 +11,13 @@
         <div [innerHTML]="notificacoesTexto"></div>
       </ng-template>
       @if(qtd_notification > 0) {
-        <button type="button" class="btn btn-secondary position-relative me-2" [ngbPopover]="notificacaoPopover" [placement]="'bottom-start'" popoverClass="popover-notificacoes">
+        <span class="position-relative me-2" [ngbPopover]="notificacaoPopover" [placement]="'bottom-start'" popoverClass="popover-notificacoes" style="cursor: pointer;">
           <i class="fal fa-bell fa-lg"></i>
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             {{qtd_notification}}
             <span class="visually-hidden">unread messages</span>
           </span>
-        </button>
+        </span>
       }
       <div style="height: 24px; border-left: 1px solid #ccc;"></div>
       <i class="fal fa-user fa-lg"></i>
