@@ -1,0 +1,26 @@
+    <div class="card scrollable-card">
+      <div class="card-body scrollable-body">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="card-title mb-0">Agenda</h5>
+            <div class="d-flex gap-2">
+                <span class="material-icons" style="cursor: pointer;" title="Cadastrar">add</span>
+                <span class="material-icons" style="cursor: pointer;" title="Editar">more_vert</span>
+            </div>
+        </div>
+        @for (item of items; track $index) {
+            <h5>{{ getDataFormatada(item['eveDthInicFormat']) }}</h5>
+            <div class="d-flex align-items-center">
+                <div class="d-flex flex-column align-items-start">
+                    <h5 class="card-title mb-0" style="color: #0C464A;">{{ getHoraFormatada(item['eveDthInicFormat']) }}</h5>
+                    <span>{{ getHoraFormatada(item['eveDthFinalFormat']) }}</span>
+                </div>
+                <div style="height: 39px; margin: 10px;" [style.border-left]="'4px solid ' + ($index % 2 === 0 ? '#F27E3D' : '#00995D')"></div>
+                <div class="d-flex flex-column align-items-start">
+                    <h5 class="card-title mb-0">{{item['eveDscTitulo']}}</h5>
+                    <span>Local da agenda</span>
+                </div>
+            </div>
+            <hr>
+        }
+      </div>
+    </div>
