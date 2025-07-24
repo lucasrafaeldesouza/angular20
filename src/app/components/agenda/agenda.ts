@@ -35,10 +35,10 @@ export class Agenda {
 
   dadosCalendario() {
     let params = new HttpParams();
-    params = params
-    .set('filtros[opdCod]', '')
-    .set('filtros[dataInicial]', this.datasBusca.dataInicial.toLocaleDateString())
-    .set('filtros[dataFinal]', this.datasBusca.dataFinal.toLocaleDateString())
+    params = params.set('filtros[opdCod]', '');
+    params = params.set('filtros[dataInicial]', this.datasBusca.dataInicial.toLocaleDateString());
+    params = params.set('filtros[dataFinal]', this.datasBusca.dataFinal.toLocaleDateString());
+
     this.http.get('/rede/apirest/rdr02/listar',{params}).subscribe((res: any) => {
       this.buscaLocal(res.data);
       this.items = res.data
