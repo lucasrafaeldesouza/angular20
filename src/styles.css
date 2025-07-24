@@ -53,3 +53,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   max-width: 400px;
   text-align: left;
 }
+.scrollable-body::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollable-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollable-body::-webkit-scrollbar-thumb {
+  background-color: #bbb; /* cinza claro */
+  border-radius: 3px;
+}
+.scrollable-body {
+  overflow-y: auto;
+  max-height: 400px;
+}

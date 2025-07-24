@@ -1,0 +1,17 @@
+.card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.footer {
+    position: relative;
+    margin-top: 25px;
+}
+.scrollable-card {
+  height: 400px;
+}
+.scrollable-body {
+  overflow-y: auto;
+}
