@@ -16,6 +16,7 @@ export class Agenda {
   public horarioInicio = ''
   public horarioFim = ''
   public items = []
+  public locais: any[] = [];
   constructor() {
     this.setaPrimeiroEUltimoDiaDoMes()
     this.dadosCalendario()
@@ -39,11 +40,28 @@ export class Agenda {
     .set('filtros[dataInicial]', this.datasBusca.dataInicial.toLocaleDateString())
     .set('filtros[dataFinal]', this.datasBusca.dataFinal.toLocaleDateString())
     this.http.get('/rede/apirest/rdr02/listar',{params}).subscribe((res: any) => {
-      console.log(res.data)
+      this.buscaLocal(res.data);
       this.items = res.data
     })
   }
+  buscaLocal(data: any) {
+    data.forEach((objeto: any, index: number) => {
+      this.http.get('/rede/apirest/rdr02/obter/' + objeto.eveCod).subscribe((res: any) => {
+        const eveDthInicFormat = res.eveDthInicFormat; 
+        const eveDthInicFormatDay = eveDthInicFormat.split(' ')[0];
+        res.dataOrdenada = this.convertDate(eveDthInicFormatDay);
+        this.locais.push(res);
 
+        if (this.locais.length === data.length) {
+          this.locais.sort((a, b) => a.dataOrdenada.getTime() - b.dataOrdenada.getTime());
+        }
+      });
+    });
+  }
+  convertDate(dataStr: string): Date {
+    const [dia, mes, ano] = dataStr.split('/');
+    return new Date(+ano, +mes - 1, +dia);
+  }
   getHoraFormatada(dataCompleta: string): string {
     if (!dataCompleta) return '';
     const partes = dataCompleta.split(' ');
