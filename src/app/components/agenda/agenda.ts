@@ -13,6 +13,7 @@ export class Agenda {
     dataInicial: new Date,
     dataFinal: new Date
   }
+  public loading = false
   public horarioInicio = ''
   public horarioFim = ''
   public items = []
@@ -45,8 +46,10 @@ export class Agenda {
     })
   }
   buscaLocal(data: any) {
-    data.forEach((objeto: any, index: number) => {
+    this.loading = true
+    data.forEach((objeto: any) => {
       this.http.get('/rede/apirest/rdr02/obter/' + objeto.eveCod).subscribe((res: any) => {
+        this.loading = false
         const eveDthInicFormat = res.eveDthInicFormat; 
         const eveDthInicFormatDay = eveDthInicFormat.split(' ')[0];
         res.dataOrdenada = this.convertDate(eveDthInicFormatDay);

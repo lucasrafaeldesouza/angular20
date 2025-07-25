@@ -7,6 +7,13 @@
                 <span class="material-icons" style="cursor: pointer;" title="Editar">more_vert</span>
             </div>
         </div>
+        @if(loading) {
+            <div class="spinner-container">
+                <div class="spinner-border text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        }
         @for (item of locais; track $index) {
             <h5>{{ getDataFormatada(item['eveDthInicFormat']) }}</h5>
             <div class="d-flex align-items-center">
