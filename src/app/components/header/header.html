@@ -11,7 +11,7 @@
         <div [innerHTML]="notificacoesTexto"></div>
       </ng-template>
       @if(qtd_notification > 0) {
-        <span class="position-relative me-2" [ngbPopover]="notificacaoPopover" [placement]="'bottom-start'" popoverClass="popover-notificacoes" style="cursor: pointer;">
+        <span class="position-relative me-2" (click)="obterNotificacoesPendentesList()" [ngbPopover]="notificacaoPopover" [placement]="'bottom-start'" popoverClass="popover-notificacoes" style="cursor: pointer;">
           <i class="fal fa-bell fa-lg"></i>
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             {{qtd_notification}}

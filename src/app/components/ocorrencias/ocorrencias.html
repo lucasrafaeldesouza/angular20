@@ -1,0 +1,77 @@
+<ul ngbNav #nav="ngbNav" class="nav-tabs mt-4">
+	<li ngbNavItem>
+		<button style="color: #00995D;" ngbNavLink>Ocorrencias</button>
+		<ng-template ngbNavContent>
+            <div class="table-wrapper position-relative">
+                @if(loading) {
+                    <div class="spinner-container">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                }
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Protocolo</th>
+                            <th scope="col">Data de criação</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Título da solicitação</th>
+                            <th scope="col">Prestador</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Setor responsável</th>
+                            <th scope="col">Responsável</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(items.length === 0 && loading == false) {
+                            <p>Nenhum registro encontrado</p>
+                        }
+                        @for (item of items; track $index) {
+                            <tr>
+                                <td>{{ item['ocoCod'] }}</td>
+                                <td>{{ getDataFormatada(item['fdscOcoDateOpdus']) }}</td>
+                                <td>{{ item['fdscTipoOcorr'] }}</td>
+                                <td>{{ item['dscTitulo'] }}</td>
+                                <td>{{ item['dscPrestOpdr'] }}</td>
+                                <td>
+                                    @switch (item['ocoIndSituacOcorrDominio']) {
+                                        @case ('Em Aberto') {
+                                            <button class="btn btn-primary" type="button" disabled style="width: 100%;">
+                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                Em Aberto
+                                            </button>
+                                        }
+                                        @case ('Em Andamento') {
+                                            <button class="btn btn-danger" type="button" disabled style="width: 100%;">
+                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                Em Andamento
+                                            </button>
+                                        }
+                                        <!-- Finalizada -->
+                                        @default {
+                                            <button class="btn btn-success" type="button" disabled style="width: 100%;">
+                                                <i class="fal fa-check"></i>
+                                                Concluido
+                                            </button>
+                                        }
+                                    }
+                                </td>
+                                <td>{{ item['fdscOpdep'] }}</td>
+                                <td>{{ item['fdscOpdus'] }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+		</ng-template>
+	</li>
+	<li ngbNavItem>
+		<button style="color: #00995D;" ngbNavLink>Solicitações</button>
+		<ng-template ngbNavContent>
+			<p>Because default values have been customized in the config</p>
+		</ng-template>
+	</li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

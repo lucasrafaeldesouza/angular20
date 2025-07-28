@@ -33,7 +33,7 @@ export class Header {
     this.opdusNom = this.infoUserLogin.getOpdusNom()
     this.opdusCod = this.infoUserLogin.getOpdusCod()
     this.obterNotificacoesPendentes(this.opdusCod)
-    this.obterNotificacoesPendentesList()
+    // this.obterNotificacoesPendentesList()
   }
 
   obterNotificacoesPendentes(opdusCod: number) {
@@ -45,6 +45,7 @@ export class Header {
   items: Notificacoes[] = [];
 
   obterNotificacoesPendentesList() {
+    console.log('obterNotificacoesPendentesList')
     let params = new HttpParams();
     params = params.set('search[value]', '')
     params = params.set('columns[5][search][regex]', 'false')

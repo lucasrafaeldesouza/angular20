@@ -1,0 +1,84 @@
+.nav-tabs {
+  background-color: transparent;
+  border-bottom: 1px solid #e0e0e0;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.nav-tabs .nav-item {
+  margin-right: 1rem;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  border-radius: 0;
+  color: #666;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.nav-tabs .nav-link.active {
+  color: #00995D;
+}
+
+.nav-tabs .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00995D;
+}
+
+.nav-tabs .nav-link:hover {
+  color: #00995D;
+}
+
+
+.table-wrapper {
+  position: relative;
+  min-height: 200px;
+  overflow-x: auto; /* habilita rolagem horizontal */
+  white-space: nowrap; /* impede quebra de linha */
+}
+
+.table {
+  width: max-content; /* faz a tabela crescer horizontalmente */
+  white-space: nowrap;
+}
+
+.table th,
+.table td {
+  white-space: nowrap; /* impede quebra de texto dentro das células */
+}
+
+.spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.tabela-carregando {
+  opacity: 0.5; /* efeito visual opcional para indicar carregando */
+  pointer-events: none;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
