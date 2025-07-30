@@ -5,6 +5,8 @@ import { AuthGuard } from './_guard/auth-guard';
 import { Menu } from './components/menu/menu';
 import { Prestador } from './components/prestador/prestador';
 import { Home } from './components/home/home';
+import { Pais } from './components/cadastro/pais/pais';
+import { Uf } from './components/cadastro/uf/uf';
 
 export const routes: Routes = [
     {
@@ -23,13 +25,24 @@ export const routes: Routes = [
         ],
     },
     {
-        path: 'consultarPrestadoresP',
+        path: 'cadastroPaises',
         component: Menu,
         canActivate: [AuthGuard],
         children: [
-            { 
+            {
                 path: '', 
-                component: Prestador
+                component: Pais
+            },
+        ],
+    },
+    {
+        path: 'cadastroUF',
+        component: Menu,
+        canActivate: [AuthGuard],
+        children: [
+            {
+                path: '', 
+                component: Uf
             },
         ],
     }

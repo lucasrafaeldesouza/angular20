@@ -27,7 +27,7 @@
             <ul class="submenu">
               @for (child of item.vestrutAcessoUsuarItens; track $index) {
                 <li class="submenu-item">
-                  <a class="submenu-link" routerLink="/consultarPrestadoresP">
+                  <a class="submenu-link" routerLink="/{{child.link}}">
                     <span>{{ child.opaeDsc }}</span>
                   </a>
                 </li>

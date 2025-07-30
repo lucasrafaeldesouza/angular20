@@ -8,6 +8,7 @@ import { InfoUserLogin } from '../../services/info-user-login';
 interface MenuItem {
   icon: string;
   opaeDsc: string;
+  link?: string;
   vestrutAcessoUsuarItens?: MenuItem[];
   isOpen?: boolean;
 }
@@ -23,7 +24,7 @@ export class Sidebar {
   private http = inject(HttpClient);
   private opdusCod: number;
 
-  constructor(private infoUserLogin: InfoUserLogin,  private ConfirmDialogService: ConfirmDialogService, private router: Router) {
+  constructor(private infoUserLogin: InfoUserLogin, private ConfirmDialogService: ConfirmDialogService, private router: Router) {
     this.opdusCod = this.infoUserLogin.getOpdusCod()
     this.buscaItensMenu(this.opdusCod)
   }
@@ -45,7 +46,7 @@ export class Sidebar {
         ],
         isOpen: false
       }
-      res.forEach(function(objeto: any) {
+      res.forEach((objeto: any) => {
         switch (objeto.opaeDsc) {
           case "Cadastro":
             objeto.icon = "fal fa-plus"
@@ -72,6 +73,7 @@ export class Sidebar {
             objeto.icon = "fal fa-list-ol"
           break;
         }
+        this.buscaLinkItensMenu(objeto.vestrutAcessoUsuarItens)
       });
       this.items = res
       this.items.push(itemFixo)
@@ -98,6 +100,20 @@ export class Sidebar {
     if (!this.isLeftSidebarCollapsed() && item.vestrutAcessoUsuarItens) {
       item.isOpen = !item.isOpen;
     }
+  }
+
+  buscaLinkItensMenu(vestrutAcessoUsuarItens: any) {
+    vestrutAcessoUsuarItens.forEach((objeto: any) => {
+      console.log(objeto.eacIdtObjetoSist)
+      switch (objeto.eacIdtObjetoSist) {
+        case "rdc37":
+          objeto.link = "cadastroPaises"
+        break;
+        case "rdc02":
+          objeto.link = "cadastroUF"
+        break;
+      }
+    }) 
   }
 
 }
