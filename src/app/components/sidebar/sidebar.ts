@@ -4,14 +4,8 @@ import { Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ConfirmDialogService } from '../../services/confirm-dialog';
 import { InfoUserLogin } from '../../services/info-user-login';
-
-interface MenuItem {
-  icon: string;
-  opaeDsc: string;
-  link?: string;
-  vestrutAcessoUsuarItens?: MenuItem[];
-  isOpen?: boolean;
-}
+import { MenuItem } from '../../models/roteamento.model';
+import { Roteamento } from '../../services/roteamento';
 
 @Component({
   selector: 'app-sidebar',
@@ -24,7 +18,7 @@ export class Sidebar {
   private http = inject(HttpClient);
   private opdusCod: number;
 
-  constructor(private infoUserLogin: InfoUserLogin, private ConfirmDialogService: ConfirmDialogService, private router: Router) {
+  constructor(private infoUserLogin: InfoUserLogin, private roteamento: Roteamento, private ConfirmDialogService: ConfirmDialogService, private router: Router) {
     this.opdusCod = this.infoUserLogin.getOpdusCod()
     this.buscaItensMenu(this.opdusCod)
   }
@@ -73,7 +67,7 @@ export class Sidebar {
             objeto.icon = "fal fa-list-ol"
           break;
         }
-        this.buscaLinkItensMenu(objeto.vestrutAcessoUsuarItens)
+        this.roteamento.buscaLinkItensMenu(objeto.vestrutAcessoUsuarItens)
       });
       this.items = res
       this.items.push(itemFixo)
@@ -100,20 +94,6 @@ export class Sidebar {
     if (!this.isLeftSidebarCollapsed() && item.vestrutAcessoUsuarItens) {
       item.isOpen = !item.isOpen;
     }
-  }
-
-  buscaLinkItensMenu(vestrutAcessoUsuarItens: any) {
-    vestrutAcessoUsuarItens.forEach((objeto: any) => {
-      console.log(objeto.eacIdtObjetoSist)
-      switch (objeto.eacIdtObjetoSist) {
-        case "rdc37":
-          objeto.link = "cadastroPaises"
-        break;
-        case "rdc02":
-          objeto.link = "cadastroUF"
-        break;
-      }
-    }) 
   }
 
 }

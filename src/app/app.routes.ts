@@ -7,6 +7,7 @@ import { Prestador } from './components/prestador/prestador';
 import { Home } from './components/home/home';
 import { Pais } from './components/cadastro/pais/pais';
 import { Uf } from './components/cadastro/uf/uf';
+import { Cidades } from './components/cadastro/cidades/cidades';
 
 export const routes: Routes = [
     {
@@ -43,6 +44,17 @@ export const routes: Routes = [
             {
                 path: '', 
                 component: Uf
+            },
+        ],
+    },
+    {
+        path: 'cadastroCidade',
+        component: Menu,
+        canActivate: [AuthGuard],
+        children: [
+            {
+                path: '', 
+                component: Cidades
             },
         ],
     }
