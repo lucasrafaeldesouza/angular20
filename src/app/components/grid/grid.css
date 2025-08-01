@@ -41,18 +41,18 @@
 .table-wrapper {
   position: relative;
   min-height: 200px;
-  overflow-x: auto; /* habilita rolagem horizontal */
-  white-space: nowrap; /* impede quebra de linha */
+  overflow-x: auto; 
+  white-space: nowrap;
 }
 
 .table {
-  width: max-content; /* faz a tabela crescer horizontalmente */
+  min-width: 100%;
   white-space: nowrap;
 }
 
 .table th,
 .table td {
-  white-space: nowrap; /* impede quebra de texto dentro das células */
+  white-space: nowrap;
 }
 
 .spinner-container {
