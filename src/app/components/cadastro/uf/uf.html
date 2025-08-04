@@ -1,1 +1,6 @@
-<app-grid [columnArray]="columnList" [gridData]="items"></app-grid>
+<app-grid [columnArray]="columnList" [gridData]="items" [title]="title" [buttonTitle]="buttonTitle" [link]="link">
+    <ng-template #actionsTemplate let-item>
+        <i class="fal fa-edit fa-lg" ></i>
+        <i class="fal fa-trash fa-lg" style="margin-left: 10px;"></i>
+    </ng-template>
+</app-grid>

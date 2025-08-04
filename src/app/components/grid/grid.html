@@ -1,11 +1,56 @@
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div class="d-flex flex-column align-items-start">
+        <h3 class="card-title mb-0" style="color: #0C464A;">{{title}}</h3>
+        <span><i class="fas fa-arrow-left"></i> {{ link }}</span>
+    </div>
+    <div class="d-flex gap-2">
+        <button type="button" class="btn btn-success position-relative me-2" style="background-color: #0C464A;">
+            {{buttonTitle}}
+        </button>
+    </div>
+</div>
 <div class="table-wrapper position-relative">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <form class="d-flex">
+                        <div class="input-group">
+                            <input class="form-control" size="50px" type="search" placeholder="Buscar" aria-label="Search">
+                            <span class="input-group-text bg-white">
+                                <span class="material-icons text-muted">search</span>
+                            </span>
+                        </div>
+                    </form>
+                </ul>
+                <span class="navbar-text">
+                    <button type="button" class="btn btn-outline-success me-2">
+                        <i class="fas fa-columns"></i>
+                        Colunas
+                    </button>
+                    <button type="button" class="btn btn-outline-success me-2">
+                        <i class="fal fa-arrow-up"></i>
+                        Importar PTU
+                    </button>
+                    <button type="button" class="btn btn-outline-success me-2">
+                        <i class="fal fa-arrow-down"></i>
+                        Exportar
+                    </button>
+                    <button type="button" class="btn btn-success">
+                        <i class="fas fa-filter"></i>
+                        Filtrar
+                    </button>
+                </span>
+            </div>
+        </div>
+    </nav>
     <table class="table">
         <thead>
             <tr>
                 @for (item of columnArray; track $index) {
                     <th>{{item.headerName}}</th>
                 }
-                <th scope="col" style="text-align: center;">Ações</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -14,10 +59,13 @@
                     @for (columnName of columnArray; track $index) {
                         <td> {{item[columnName.fieldName]}} </td>
                     }
-                    <td style="text-align: center;">
-                        <i class="fal fa-edit fa-lg"></i>
-                        <i class="fal fa-trash fa-lg" style="margin-left: 10px;"></i>
-                    </td>
+                    @if(actionsTemplate) {
+                        <ng-container>
+                            <td style="text-align: end;">
+                                <ng-container *ngTemplateOutlet="actionsTemplate; context: { $implicit: item }"></ng-container>
+                            </td>
+                        </ng-container>
+                    }
                 </tr>
             }
         </tbody>
