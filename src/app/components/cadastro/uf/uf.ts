@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Grid, tableColumn } from "../../grid/grid";
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { ConfirmDialogService } from '../../../services/confirm-dialog';
+import { Alert } from '../../../services/alert';
 
 @Component({
   selector: 'app-uf',
@@ -26,7 +28,7 @@ export class Uf {
         headerName: 'Nome UF'
       }
     ]
-    constructor() {
+    constructor(private ConfirmDialogService: ConfirmDialogService, private snackBar: Alert) {
       this.buscaUf()
     }
 
@@ -60,8 +62,14 @@ export class Uf {
       console.log(data)
     }
     onDeleteUf(data: any) {
-      alert('onDelete from UFs')
-      console.log(data)
+      this.ConfirmDialogService.confirm("Confirmação de Exclusão", `Deseja realmente excluir a UF - ${data.fdscUf}?`, "Sim, Quero Excluir", "Cancelar").then((confirmed) => {
+        if(confirmed){
+          this.http.delete('/rede/apirest/rdc02/excluir/'+data.ufCod).subscribe((res: any) => {
+            this.buscaUf()
+            this.snackBar.mostrarAlert('Atenção', 'Uf Deletada com Sucesso', 'success')
+          })
+        }
+      })
     }
 
 }
