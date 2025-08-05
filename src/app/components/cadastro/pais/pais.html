@@ -1,6 +1,6 @@
 <app-grid [columnArray]="columnList" [gridData]="items" [title]="title" [buttonTitle]="buttonTitle" [link]="link" >
     <ng-template #actionsTemplate let-item>
-        <i class="fal fa-edit fa-lg" (click)="onEditPais(item)"></i>
-        <i class="fal fa-trash fa-lg" (click)="onDeletePais(item)" style="margin-left: 10px;"></i>
+        <i class="fal fa-edit fa-lg action-icon-edit" (click)="onEditPais(item)"></i>
+        <i class="fal fa-trash fa-lg action-icon-delete" (click)="onDeletePais(item)" style="margin-left: 10px;"></i>
     </ng-template>
 </app-grid>

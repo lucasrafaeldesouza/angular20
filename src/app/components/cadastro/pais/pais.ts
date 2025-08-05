@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { Grid, tableColumn } from '../../grid/grid';
+import { ConfirmDialogService } from '../../../services/confirm-dialog';
+import { Alert } from '../../../services/alert';
 
 @Component({
   selector: 'app-pais',
@@ -32,7 +34,7 @@ export class Pais {
     }
   ]
 
-  constructor() {
+  constructor(private ConfirmDialogService: ConfirmDialogService, private snackBar: Alert) {
     this.buscaPais()
   }
 
@@ -67,12 +69,17 @@ export class Pais {
     })
   }
   onEditPais(data: any) {
-    alert('onEdit from pais')
     console.log(data)
   }
   onDeletePais(data: any) {
-    alert('onDelete from pais')
-    console.log(data)
+    this.ConfirmDialogService.confirm("Confirmação de Exclusão", `Deseja realmente excluir o País - ${data.fdscPais}?`, "Sim, Quero Excluir", "Cancelar").then((confirmed) => {
+      if(confirmed){
+        this.http.delete('/rede/apirest/rdc37/excluir/'+data.paisCod).subscribe((res: any) => {
+          this.buscaPais()
+          this.snackBar.mostrarAlert('Atenção', 'País Deletado com Sucesso', 'success')
+        })
+      }
+    })
   }
 
 }
