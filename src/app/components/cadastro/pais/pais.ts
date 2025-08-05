@@ -66,5 +66,13 @@ export class Pais {
       this.items = res.data
     })
   }
+  onEditPais(data: any) {
+    alert('onEdit from pais')
+    console.log(data)
+  }
+  onDeletePais(data: any) {
+    alert('onDelete from pais')
+    console.log(data)
+  }
 
 }

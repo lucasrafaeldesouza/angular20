@@ -55,5 +55,13 @@ export class Uf {
       })
 
     }
+    onEditUf(data: any) {
+      alert('onEdit from UFs')
+      console.log(data)
+    }
+    onDeleteUf(data: any) {
+      alert('onDelete from UFs')
+      console.log(data)
+    }
 
 }
