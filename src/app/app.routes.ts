@@ -8,6 +8,7 @@ import { Home } from './components/home/home';
 import { Pais } from './components/cadastro/pais/pais';
 import { Uf } from './components/cadastro/uf/uf';
 import { Cidades } from './components/cadastro/cidades/cidades';
+import { ParametrosRotas } from './components/cadastro/parametros-rotas/parametros-rotas';
 
 export const routes: Routes = [
     {
@@ -33,6 +34,17 @@ export const routes: Routes = [
             {
                 path: '', 
                 component: Pais
+            },
+        ],
+    },
+    {
+        path: 'parametrosRotas/:id',
+        component: Menu,
+        canActivate: [AuthGuard],
+        children: [
+            {
+                path: '', 
+                component: ParametrosRotas
             },
         ],
     },
