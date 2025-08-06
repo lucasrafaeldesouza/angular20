@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h4 class="modal-title">Edição de País</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close('Close click')"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="dadosPais" (submit)="inseri_atualiza_pais()">
+        <div class="mb-3">
+            <label class="form-label">Código Oficial</label>
+            <div class="input-group">
+                <input type="text" id="paisCodOfcial" formControlName="paisCodOfcial" class="form-control form-control-lg"/>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <div class="input-group">
+                <input type="text" id="paisNom" formControlName="paisNom" class="form-control form-control-lg"/>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Código DDI</label>
+            <div class="input-group">
+                <input type="text" maxlength="3" id="paisCodDdi" formControlName="paisCodDdi" class="form-control form-control-lg"/>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Cancelar</button>
+        </div>
+    </form>
+</div>

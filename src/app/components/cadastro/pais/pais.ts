@@ -3,6 +3,8 @@ import { Component, inject } from '@angular/core';
 import { Grid, tableColumn } from '../../grid/grid';
 import { ConfirmDialogService } from '../../../services/confirm-dialog';
 import { Alert } from '../../../services/alert';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PaisInsertEdit } from '../pais-insert-edit/pais-insert-edit';
 
 @Component({
   selector: 'app-pais',
@@ -34,7 +36,7 @@ export class Pais {
     }
   ]
 
-  constructor(private ConfirmDialogService: ConfirmDialogService, private snackBar: Alert) {
+  constructor(private ConfirmDialogService: ConfirmDialogService, private snackBar: Alert, private modalService: NgbModal) {
     this.buscaPais()
   }
 
@@ -69,7 +71,8 @@ export class Pais {
     })
   }
   onEditPais(data: any) {
-    console.log(data)
+    const editPais = this.modalService.open(PaisInsertEdit);
+    editPais.componentInstance.data = data;
   }
   onDeletePais(data: any) {
     this.ConfirmDialogService.confirm("Confirmação de Exclusão", `Deseja realmente excluir o País - ${data.fdscPais}?`, "Sim, Quero Excluir", "Cancelar").then((confirmed) => {
