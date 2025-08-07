@@ -3,6 +3,8 @@ import { Grid, tableColumn } from "../../grid/grid";
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ConfirmDialogService } from '../../../services/confirm-dialog';
 import { Alert } from '../../../services/alert';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UfInsertEdit } from '../uf-insert-edit/uf-insert-edit';
 
 @Component({
   selector: 'app-uf',
@@ -25,7 +27,7 @@ export class Uf {
         headerName: 'Nome UF'
       }
     ]
-    constructor(private ConfirmDialogService: ConfirmDialogService, private snackBar: Alert) {
+    constructor(private ConfirmDialogService: ConfirmDialogService, private snackBar: Alert, private modalService: NgbModal) {
       this.buscaUf()
     }
 
@@ -55,8 +57,8 @@ export class Uf {
 
     }
     onEditUf(data: any) {
-      alert('onEdit from UFs')
-      console.log(data)
+      const editUf = this.modalService.open(UfInsertEdit);
+      editUf.componentInstance.data = data;
     }
     onDeleteUf(data: any) {
       this.ConfirmDialogService.confirm("Confirmação de Exclusão", `Deseja realmente excluir a UF - ${data.fdscUf}?`, "Sim, Quero Excluir", "Cancelar").then((confirmed) => {
