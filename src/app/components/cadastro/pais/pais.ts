@@ -17,9 +17,6 @@ export class Pais {
   private http = inject(HttpClient);
   public loading = false
   public items = []
-  public title = 'Cadastro de Países'
-  public buttonTitle = 'Cadastrar País +'
-  public link = 'bemVindo / cadastroPaises'
 
   columnList: tableColumn [] = [
     { 

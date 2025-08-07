@@ -10,9 +10,6 @@ import { NgTemplateOutlet } from '@angular/common';
 export class Grid {
     @Input() columnArray: tableColumn [] = []
     @Input() gridData: any [] = []
-    @Input() title: string = ''
-    @Input() buttonTitle: string = ''
-    @Input() link: string = ''
     @ContentChild('actionsTemplate') actionsTemplate!: TemplateRef<any>;
 }
 

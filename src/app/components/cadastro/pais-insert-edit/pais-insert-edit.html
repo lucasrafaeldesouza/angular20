@@ -3,7 +3,7 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close('Close click')"></button>
 </div>
 <div class="modal-body">
-    <form [formGroup]="dadosPais" (submit)="inseri_atualiza_pais()">
+    <form [formGroup]="dadosPais" (submit)="salva_pais()">
         <div class="mb-3">
             <label class="form-label">Código Oficial</label>
             <div class="input-group">

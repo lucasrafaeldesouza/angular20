@@ -3,7 +3,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Alert } from '../../../services/alert';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pais-insert-edit',
@@ -35,13 +34,19 @@ export class PaisInsertEdit {
     paisCodDdi: new FormControl('', Validators.required),
   });
 
-  inseri_atualiza_pais() {
+  salva_pais() {
     this.http.post('/rede/apirest/rdc37/salvar/'+this.dadosPais.value.paisCod, this.dadosPais.value).subscribe((res: any) => {
       console.log(res)
+      if(res.mensagem = 'Registro inserido com sucesso!') {
+        this.snackBar.mostrarAlert('Atenção', 'País Cadastrado com Sucesso', 'success')
+        this.activeModal.close()
+        location.reload()
+      } else {
+        this.snackBar.mostrarAlert('Atenção', 'País Atualizado com Sucesso', 'success')
+        this.activeModal.close()
+        location.reload()
+      }
     })
-    this.snackBar.mostrarAlert('Atenção', 'País Atualizado com Sucesso', 'success')
-    this.activeModal.close()
-    location.reload()
   }
 
 }

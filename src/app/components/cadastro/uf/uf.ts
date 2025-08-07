@@ -14,9 +14,6 @@ export class Uf {
 
     private http = inject(HttpClient);
     public items = []
-    public title = 'Cadastro de UFs'
-    public buttonTitle = 'Cadastrar Uf +'
-    public link = 'bemVindo / cadastroUF'
     
     columnList: tableColumn [] = [
       { 
