@@ -12,6 +12,7 @@ import { Alert } from '../../../services/alert';
 })
 export class PaisInsertEdit {
   @Input() public data: any;
+  @Input() public refreshList!: () => void;
   private http = inject(HttpClient);
 
   constructor(public activeModal: NgbActiveModal, private snackBar: Alert) {}
@@ -36,16 +37,9 @@ export class PaisInsertEdit {
 
   salva_pais() {
     this.http.post('/rede/apirest/rdc37/salvar/'+this.dadosPais.value.paisCod, this.dadosPais.value).subscribe((res: any) => {
-      console.log(res)
-      if(res.mensagem = 'Registro inserido com sucesso!') {
-        this.snackBar.mostrarAlert('Atenção', 'País Cadastrado com Sucesso', 'success')
-        this.activeModal.close()
-        location.reload()
-      } else {
-        this.snackBar.mostrarAlert('Atenção', 'País Atualizado com Sucesso', 'success')
-        this.activeModal.close()
-        location.reload()
-      }
+      this.snackBar.mostrarAlert('Atenção', res.mensagem, 'success')
+      this.activeModal.close()
+      this.refreshList();
     })
   }
 

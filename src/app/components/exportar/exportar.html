@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Exportar</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close('Close click')"></button>
+</div>
+<div class="modal-body">
+    <ul class="list-group list-group-flush">
+        <div class="d-flex align-items-center mt-2">
+            <button type="button" class="btn btn-secondary position-relative me-2">
+                <i class="fal fa-file"></i>
+            </button>
+            <div class="d-flex flex-column align-items-start">
+                <h6 class="card-title mb-0">TXT</h6>
+            </div>
+        </div>
+        <div class="d-flex align-items-center mt-2">
+            <button type="button" (click)="exportAsXLSX(data)" class="btn btn-secondary position-relative me-2">
+                <i class="fal fa-file"></i>
+            </button>
+            <div class="d-flex flex-column align-items-start">
+                <h6 class="card-title mb-0" (click)="exportAsXLSX(data)">Excel</h6>
+            </div>
+        </div>
+        <div class="d-flex align-items-center mt-2">
+            <button type="button" class="btn btn-secondary position-relative me-2">
+                <i class="fal fa-file"></i>
+            </button>
+            <div class="d-flex flex-column align-items-start">
+                <h6 class="card-title mb-0">CSV</h6>
+            </div>
+        </div>
+        <div class="d-flex align-items-center mt-2">
+            <button type="button" class="btn btn-secondary position-relative me-2">
+                <i class="fal fa-file"></i>
+            </button>
+            <div class="d-flex flex-column align-items-start">
+                <h6 class="card-title mb-0">PDF</h6>
+            </div>
+        </div>
+    </ul>
+</div>

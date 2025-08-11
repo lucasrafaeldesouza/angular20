@@ -5,6 +5,7 @@ import { ConfirmDialogService } from '../../../services/confirm-dialog';
 import { Alert } from '../../../services/alert';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PaisInsertEdit } from '../pais-insert-edit/pais-insert-edit';
+import { Exportar } from '../../exportar/exportar';
 
 @Component({
   selector: 'app-pais',
@@ -70,6 +71,7 @@ export class Pais {
   onEditPais(data: any) {
     const editPais = this.modalService.open(PaisInsertEdit);
     editPais.componentInstance.data = data;
+    editPais.componentInstance.refreshList = () => this.buscaPais();
   }
   onDeletePais(data: any) {
     this.ConfirmDialogService.confirm("Confirmação de Exclusão", `Deseja realmente excluir o País - ${data.fdscPais}?`, "Sim, Quero Excluir", "Cancelar").then((confirmed) => {
