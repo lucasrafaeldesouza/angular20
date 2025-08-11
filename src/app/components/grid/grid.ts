@@ -12,15 +12,14 @@ import { Exportar } from '../exportar/exportar';
 export class Grid {
     @Input() columnArray: tableColumn [] = []
     @Input() gridData: any [] = []
+    @Input() itemsExport: any [] = []
     @ContentChild('actionsTemplate') actionsTemplate!: TemplateRef<any>;
 
     constructor(private modalService: NgbModal) {}
 
-    export(data: any, columnArray: any) {
-      console.log(data)
+    export(itemsExport: any) {
       const exportar = this.modalService.open(Exportar);
-      exportar.componentInstance.data = data;
-      exportar.componentInstance.columnArray = columnArray;
+      exportar.componentInstance.itemsExport = itemsExport;
     }
 }
 

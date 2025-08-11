@@ -16,7 +16,8 @@ export class Uf {
 
     private http = inject(HttpClient);
     public items = []
-    
+    public itemsExport = []
+
     columnList: tableColumn [] = [
       { 
         fieldName: 'ufSig',
@@ -53,8 +54,14 @@ export class Uf {
 
       this.http.post('/rede/apirest/rdc02/listar',params).subscribe((res: any) => {
         this.items = res.data
-      })
-
+        const itemsExport = res.data.map((item: any) => {
+          return {
+            'Sigla UF': item.ufSig,
+            'Nome UF': item.ufNom
+          };
+        });
+        this.itemsExport = itemsExport;
+      });
     }
     onEditUf(data: any) {
       const editUf = this.modalService.open(UfInsertEdit);

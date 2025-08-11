@@ -18,6 +18,7 @@ export class Pais {
   private http = inject(HttpClient);
   public loading = false
   public items = []
+  public itemsExport = []
 
   columnList: tableColumn [] = [
     { 
@@ -64,9 +65,18 @@ export class Pais {
     params = params.set('columns[1][search][regex]', "false"),
     params = params.set('order[0][column]', "0")
 
-    this.http.post('/rede/apirest/rdc37/listar',params).subscribe((res: any) => {
-      this.items = res.data
-    })
+    this.http.post('/rede/apirest/rdc37/listar', params).subscribe((res: any) => {
+      this.items = res.data;
+      const itemsExport = res.data.map((item: any) => {
+        return {
+          'Código Oficial': item.paisCodOfcial,
+          'Nome': item.paisNom,
+          'Código DDI': item.paisCodDdi
+        };
+      });
+      this.itemsExport = itemsExport;
+    });
+
   }
   onEditPais(data: any) {
     const editPais = this.modalService.open(PaisInsertEdit);

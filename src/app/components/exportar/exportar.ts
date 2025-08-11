@@ -9,17 +9,16 @@ import { Excel } from '../../services/excel';
   styleUrl: './exportar.css'
 })
 export class Exportar {
-  @Input() public data: any;
-  @Input() public columnArray: any;
+  @Input() public itemsExport: any;
   
   constructor(public activeModal: NgbActiveModal, private excelService: Excel) {}
 
   ngOnInit() {
   }
 
-  exportAsXLSX(data: any) {
-    console.log(data)
-    this.excelService.exportAsExcelFile(data, 'sample');
+  exportAsXLSX(itemsExport: any) {
+    this.excelService.exportAsExcelFile(itemsExport, 'sample');
+    this.activeModal.close()
   }
 
 }
